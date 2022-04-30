@@ -10,3 +10,10 @@ html{
 body{
     min-height: 100%;
 }
+
+#output {
+    height: 40px;
+    width: 200px;
+    background-color: blue;
+    color: white;
+}
