@@ -3,17 +3,43 @@
     margin: 0;
   }
 
-html{
+html {
     height: 100%;
 }
 
-body{
+body {
     min-height: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #output {
     height: 40px;
-    width: 200px;
+    width: 100%;
     background-color: blue;
     color: white;
+    flex-grow: 2;
 }
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.outline {
+}
+
+.btn {
+    padding: 20px;
+    width: 60px;
+}
+
+.btn-container {
+    justify-content: space-between;
+}
+
+#zero {
+    width: 125px;
+}
+
