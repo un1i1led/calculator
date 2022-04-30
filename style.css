@@ -11,12 +11,12 @@ body {
     min-height: 100%;
     display: flex;
     justify-content: center;
+    background-color: black;
 }
 
 #output {
     height: 40px;
     width: 100%;
-    background-color: blue;
     color: white;
     flex-grow: 2;
 }
@@ -28,11 +28,17 @@ body {
 }
 
 .outline {
+    background-color: black;
+    border-radius: 2px;
+    padding: 10px;
+    border: 2px solid white;
 }
 
 .btn {
     padding: 20px;
     width: 60px;
+    border-radius: 50%;
+    border: 1px solid black;
 }
 
 .btn-container {
@@ -41,5 +47,24 @@ body {
 
 #zero {
     width: 125px;
+    border-radius: 5%;
+}
+
+.row {
+    margin: 3px 0px;
+}
+
+.btn-grey {
+    background-color: #b7b7b7;
+}
+
+.btn-orange {
+    background-color: #fa980b;
+    color: white;
+}
+
+.btn-number {
+    background-color: #373735;
+    color: white;
 }
 
