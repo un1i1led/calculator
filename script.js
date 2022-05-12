@@ -5,10 +5,13 @@ const plus = document.querySelector("#plus");
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const subtract = document.querySelector("#minus");
+const numbers = document.querySelectorAll(".btn-number");
 
 let currentNumber, nextNumber;
 let operator;
 let result;
+
+output.textContent = 0;
 
 const add = (a,b) => {
     result = a + b;
@@ -17,11 +20,7 @@ const add = (a,b) => {
 }
 
 const minus = (a,b) => {
-    if (a < b){
-        result = b - a;
-    } else {
-        result = a - b;
-    }
+    result = a - b;
     output.textContent = result;
     return result;
 }
@@ -54,17 +53,18 @@ subtract.addEventListener("click", function(){
     return currentNumber;
 })
 
-five.addEventListener("click", function(){
-    output.textContent += five.textContent;
-})
+numbers.forEach(number =>{
+    number.addEventListener("click", function handleClick(event){
+        output.textContent += number.textContent;
+    });
+});
 
 equals.addEventListener("click", function(){
     operate(operator, currentNumber, nextNumber);
 })
 
 clear.addEventListener("click", function(){
-    output.textContent = "";
+    output.textContent = 0;
     currentNumber = 0;
     operator = undefined;
-    console.log(currentNumber);
 })
