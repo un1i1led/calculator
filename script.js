@@ -1,21 +1,23 @@
 const output = document.querySelector("#output");
-const five = document.querySelector("#five");
-const six = document.querySelector("#six");
 const plus = document.querySelector("#plus");
 const equals = document.querySelector("#equals");
 const clear = document.querySelector("#clear");
 const subtract = document.querySelector("#minus");
 const numbers = document.querySelectorAll(".btn-number");
+const resultOutput = document.querySelector("#result-output");
 
-let currentNumber, nextNumber;
+let currentNumber, holdValue = 0, update = 0;
 let operator;
 let result;
+let arrayNumbers = [];
 
 output.textContent = 0;
 
 const add = (a,b) => {
     result = a + b;
-    output.textContent = result;
+    resultOutput.textContent = result;
+    arrayNumbers = [result];
+    console.log(arrayNumbers);
     return result;
 }
 
@@ -39,12 +41,28 @@ const choice = function(operatorChoice){
     return operator = operatorChoice;
 }
 
+const display = (results) => output.textContent = result;
+
+const updateValue = (operator, number) => {
+    output.textContent = "";
+    console.log(arrayNumbers);
+    result = arrayNumbers.reduce((partialSum, a) => partialSum + a, 0);
+    console.log(result);
+    resultOutput.textContent = result;
+    // display(result);
+} 
+
 plus.addEventListener("click", function(){
     choice("add");
+    // currentNumber = parseInt(output.textContent);
+    arrayNumbers.push(parseInt(output.textContent));
     currentNumber = parseInt(output.textContent);
-    output.textContent = "";
+    updateValue("add", currentNumber);
+    update = 1;
     return currentNumber;
 })
+
+
 
 subtract.addEventListener("click", function(){
     choice("minus");
@@ -60,11 +78,18 @@ numbers.forEach(number =>{
 });
 
 equals.addEventListener("click", function(){
-    operate(operator, currentNumber, nextNumber);
+    operate(operator, currentNumber, holdValue);
+    console.log(operator + currentNumber + holdValue);
+    holdValue = 0;
+    update = 0;
+    output.textContent = "";
 })
 
 clear.addEventListener("click", function(){
     output.textContent = 0;
-    currentNumber = 0;
+    arrayNumbers = [];
+    resultOutput.textContent = "";
+    holdValue = 0;
     operator = undefined;
+    update = 0;
 })
