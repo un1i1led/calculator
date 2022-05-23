@@ -8,11 +8,11 @@ const multiply = document.querySelector("#multiply");
 const divide = document.querySelector("#division");
 const equals = document.querySelector("#equals");
 const numbers = document.querySelectorAll(".btn-number");
+const decimal = document.querySelector("#decimal");
 const operators = document.querySelectorAll(".operator");
 
 let valueHold = [];
-let operator = "";
-let update = 0;
+
 
 const clearAll = () => {
     output.textContent = "";
@@ -26,13 +26,27 @@ numbers.forEach(number => {
     })
 });
 
+decimal.addEventListener("click", function(){
+    if (resultOutput.textContent.includes(".")){
+        return 
+    } else {
+        resultOutput.textContent += decimal.textContent;
+    }
+});
+
+operators.forEach(operatr => {
+    operatr.addEventListener("click", function handleClick(event){
+        output.textContent = "";
+    })
+})
+
 plus.addEventListener("click", function(){
     if (valueHold.length == 2){
-        valueHold.push(parseInt(resultOutput.textContent));
+        valueHold.push(parseFloat(resultOutput.textContent));
         operate(valueHold);
     }
 
-    valueHold.push(parseInt(resultOutput.textContent));
+    valueHold.push(parseFloat(resultOutput.textContent));
     valueHold.push("+");
     resultOutput.textContent = "";
     console.log(valueHold);
@@ -40,11 +54,11 @@ plus.addEventListener("click", function(){
 
 subtract.addEventListener("click", function(){
     if (valueHold.length == 2){
-        valueHold.push(parseInt(resultOutput.textContent));
+        valueHold.push(parseFloat(resultOutput.textContent));
         operate(valueHold);
     }
 
-    valueHold.push(parseInt(resultOutput.textContent));
+    valueHold.push(parseFloat(resultOutput.textContent));
     valueHold.push("-");
     resultOutput.textContent = "";
     console.log(valueHold);
@@ -52,11 +66,11 @@ subtract.addEventListener("click", function(){
 
 multiply.addEventListener("click", function(){
     if (valueHold.length == 2){
-        valueHold.push(parseInt(resultOutput.textContent));
+        valueHold.push(parseFloat(resultOutput.textContent));
         operate(valueHold);
     }
 
-    valueHold.push(parseInt(resultOutput.textContent));
+    valueHold.push(parseFloat(resultOutput.textContent));
     valueHold.push("x");
     resultOutput.textContent = "";
     console.log(valueHold);
@@ -64,11 +78,11 @@ multiply.addEventListener("click", function(){
 
 divide.addEventListener("click", function(){
     if (valueHold.length == 2){
-        valueHold.push(parseInt(resultOutput.textContent));
+        valueHold.push(parseFloat(resultOutput.textContent));
         operate(valueHold);
     }
 
-    valueHold.push(parseInt(resultOutput.textContent));
+    valueHold.push(parseFloat(resultOutput.textContent));
     valueHold.push("/");
     resultOutput.textContent = "";
     console.log(valueHold);
@@ -88,9 +102,10 @@ const operate = (hold) => {
         result = hold[0] * hold[2];
     } else if (hold[1] == "/"){
         if (hold[2] == 0){
+            output.textContent = "Funny!";
             result = 0;
         } else {
-            hold[0] / hold[2];
+            result = hold[0] / hold[2];
         }
     }
 
@@ -100,9 +115,14 @@ const operate = (hold) => {
 }
 
 equals.addEventListener("click", function(){
-    valueHold.push(parseInt(resultOutput.textContent));
-    console.log(valueHold);
-    operate(valueHold);
+    if (resultOutput.textContent == ""){
+        return 0
+    } else {
+        valueHold.push(parseFloat(resultOutput.textContent));
+        console.log(valueHold);
+        operate(valueHold);
+    }
+
 })
 
 
