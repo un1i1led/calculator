@@ -65,8 +65,25 @@ body {
     color: white;
 }
 
+.btn-orange:hover {
+    background-color: white;
+    color: #fa980b;
+}
+
 .btn-number {
     background-color: #373735;
     color: white;
 }
 
+.btn-number:hover {
+    background-color: #575754;
+}
+
+.btn-grey:hover {
+    background-color: white;
+    color: black;
+}
+
+.btn {
+    transition: 0.15s;
+}
